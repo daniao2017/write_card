@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>致毕业生的一份礼物</title>
+</head>
+<body>
+    <div id= "header"> 
+    <h1>致毕业生的一份礼物</h1>
+    </div>
+    <div id = "tips">
+    <p> 
+       tips: 
+
+       这是一个demo，由小刘同学制作，部署在阿里云上，同学可以上传自己的图片和姓名，经过paddlehub抠图, 图像变换等操作后收到来自母校的
+        明信片。明信片分为前景(人像合成)，后景(祝福语)。
+    </p>
+    </div>
+    <div id="music">
+        <audio src="../static/music/再见.mp3" controls="controls">
+            Your browser does not support the audio element.
+            </audio>
+    </div>
+    <div id ="left">
+    <form action="" enctype='multipart/form-data' method='POST'>
+        <input type="file" name="file" style="margin-top:20px;background-color: teal;"/>
+        <br>
+        your name:<br>
+        <input type="text" name="name" value="小刘同学" style="margin-top:10px;">
+        <br>
+        <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
+    </form>
+    </div>
+    <div id = "footer">
+        <h1> made by 小刘同学<h1>
+</body>
+</html>
+
+<style>
+    #header {
+        background-color:black;
+        color:white;
+        text-align:center;
+        padding:5px;
+    }
+    #left{
+        width: 20%;
+        height: 300px; 
+        background:yellow; 
+        float: left;    
+    }
+    #tips{
+        float: right;
+        width: 30%;
+        margin: auto;
+        color: white;
+        font-size: 16;
+        font-weight: bold;
+        line-height: 1.6;
+        box-sizing: border-box;
+        border:2px solid gray;
+        background-color: dimgray;
+        position: relative;
+        top:50px;
+    }
+    #right{
+    width: 200px;
+    height: 300px;
+    float: left;
+    background: yellow;
+    margin-left: -200px;
+}
+    #footer {
+        background-color:black;
+        color:white;
+        clear:both;
+        text-align:center;
+    }
+    body{
+        background-color: darkcyan;
+    }
+    #music{
+        float: right;
+        position: relative;
+        left: 400px;
+
+    }
+
+    </style>
