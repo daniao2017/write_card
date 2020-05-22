@@ -1,19 +1,28 @@
+#!/usr/bin/python
 # coding:utf-8
 
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from werkzeug.utils import secure_filename
 import os
-import cv2
 import time
-import numpy as np
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
 import requests
 import json
 import base64
 
 from datetime import timedelta
+#百度tts
+from aip import AipSpeech
+#发送邮件
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+from email.mime.multipart import MIMEMultipart 
+#图像处理
+import cv2
+import numpy as np
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 
 # 设置允许的文件格式
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp'])
@@ -33,6 +42,7 @@ def upload():
     if request.method == 'POST':
         f = request.files['file']
         username = request.form.get('name')
+        email_name = request.form.get('email_name')
         if not (f and allowed_file(f.filename)):
             return jsonify({"error": 1001, "msg": "请检查上传的图片类型，仅限于png、PNG、jpg、JPG、bmp"})
         basepath = os.path.dirname(__file__)  # 当前文件所在路径
@@ -47,10 +57,14 @@ def upload():
         time.sleep(3)
         combination_pic()
         add_text_huidu(username,basepath)
-
+        email_name = str(email_name)
+        email_callback(username,email_name)
         return render_template('upload_ok.html', val1=time.time())
     return render_template('upload.html')
 
+@app.route('/note', methods=['POST', 'GET'])  # 添加路由
+def note():
+    return render_template('note.html')
 
 def convert(basepath, upload_path):
     file_list = [upload_path]
@@ -136,6 +150,76 @@ def add_text_huidu(username,basepath):
     draw.text(xy=(450,60),text=text2,font=font1,)
     saveimg = os.path.join(basepath, 'static/images/results', 'huidu_target2.png')
     im1.save(saveimg)
+
+def baidu_tts(tts_name):
+    tts_name = str(tts_name)
+    APP_ID = "10778068"
+    API_KEY = "90ynbXXfuNGoNMGf5Fqx9nSI"
+    SECRET_KEY = "9f6bae32625ee9ad3ae33dd64b6f79b1"
+    test = "相逢又告别，归帆又离岸，是往日欢乐的终结，未来幸福的开端。祝{0}同学前程似锦,平安喜乐".format(tts_name)
+    client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
+    base_path = os.path.dirname(__file__)  # 当前文件所在路径
+    tts_path = os.path.join(base_path, "static/music/")
+    tts_path = tts_path + "baidu_tts.mp3"
+    result  = client.synthesis(str(test), 'zh', 1, {
+    'vol': 5,"per":1})
+    # 识别正确返回语音二进制 错误则返回dict 参照下面错误码
+    if not isinstance(result, dict):
+        with open(tts_path, 'wb') as f:
+            f.write(result)   
+def email_callback(name,email_name):
+    name = str(name)
+    email_name = str(email_name)
+    #合成祝福语
+    baidu_tts(name)
+    time.sleep(3)
+    # 第三方 SMTP 服务
+    mail_host="smtp.qq.com"  #设置服务器
+    mail_user="2868108923@qq.com"    #用户名
+    mail_pass="boxxhhbgvtcldgej"   #口令 
+    sender = '2868108923@qq.com' 
+    receivers = [email_name]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+    subject = '来自母校的明信片'
+    message = MIMEMultipart()    
+    #message = MIMEText(message_fix, 'plain', 'utf-8')
+    message['Subject'] = Header(subject, 'utf-8')
+    message['From'] = Header("邮箱", 'utf-8') #发件人
+    message['To'] =  Header(name, 'utf-8')
+     # 注意：没有的文件夹一定要先创建，不然会提示没有该路径
+    base_path = os.path.dirname(__file__)  # 当前文件所在路径
+    html_file =  os.path.join(base_path, "templates/","email_send.html")  
+    sendFile = open(html_file,"rb").read()
+    message.attach(MIMEText(open(html_file,"rb").read(), 'html', 'utf-8'))
+    # 构造附件1,明信片前景
+    att_file1 = os.path.join(base_path, "static/images/results","test.jpg")
+    sendFile = open(att_file1,"rb").read()
+    att1 = MIMEText(sendFile, 'base64', 'utf-8') 
+    att1['Content-Type'] = 'application/octet-stream' 
+    att1['Content-Disposition'] = 'attachment; filename="head_image.jpg"' 
+    message.attach(att1)
+    # 构造附件2,明信片后景
+    att_file2 = os.path.join(base_path, "static/images/results","huidu_target2.png")
+    sendFile = open(att_file2,"rb").read()
+    att2 = MIMEText(sendFile, 'base64', 'utf-8') 
+    att2['Content-Type'] = 'application/octet-stream' 
+    att2['Content-Disposition'] = 'attachment; filename="back_image.jpg"' 
+    message.attach(att2)
+    # 构造附件3,祝福语
+    att_file3 = os.path.join(base_path, "static/music","baidu_tts.mp3")
+    sendFile = open(att_file3,"rb").read()
+    att3 = MIMEText(sendFile, 'base64', 'utf-8') 
+    att3['Content-Type'] = 'application/octet-stream' 
+    att3['Content-Disposition'] = 'attachment; filename="baidu_tts.mp3"' 
+    message.attach(att3)
+    try:
+        smtpObj = smtplib.SMTP() 
+        smtpObj.connect(mail_host, 25)    # 25 为 SMTP 端口号
+        smtpObj.login(mail_user,mail_pass)  
+        smtpObj.sendmail(sender, receivers, message.as_string())
+        print ("邮件发送成功")
+    except smtplib.SMTPException:
+        print ("Error: 无法发送邮件")
+        error_index = -1
 if __name__ == '__main__':
     # app.debug = True
     app.run(host='0.0.0.0', port=520, debug=True)
