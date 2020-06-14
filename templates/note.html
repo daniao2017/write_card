@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>致毕业生的一份礼物</title>
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+</head>
+<body>
+    <header>
+        <h1>来自母校的明信片</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="upload">首页</a></li>
+            <li><a >图文展示</a></li>
+            <li><a href="note">小结笔记</a></li>
+            <li><a >备留开发</a></li> 
+        </ul>
+    </nav>
+<main>
+    <article>
+        <h2>笔记小结</h2>
+        <h3>
+            希望是坚韧的拐杖，忍耐是旅行袋，带上他们，你可以登上永恒之旅，走遍全世界。
+        </h3>
+        <p>
+            本demo由小刘同学制作,部署在阿里云上。这是第二版本,与前面的版本相比,优化了html布局与 
+            css格式。实现的功能有人像合成,邮件转发,语音合成。对前端知识不是很了解,详细的总结会用markdown写
+            在自己的博客中。
+        </p>
+        <p>
+            所涉及的技术栈,图像处理,语音合成,邮件转发机制,flask框架,python
+        </p>
+        <p>
+            图像处理:
+            
+            明信片前景,该部分实现的是复杂图片提取人像,百度的深度学习技术(paddlehub)提取人像。然后利用python自带的image/numpy/opencv库
+            将人像提取到电机的明信片上,按照的是1/4的比例缩放,以及0.2的切割比。
+
+            明信片后景,是利用imgae直接在灰度图片上写上祝福语。
+
+        </p>
+        <p>
+            其他会以博客的形式写出来,省略
+        </p>
+    </article>
+    <aside>
+        <h2>歌曲-光阴的故事</h2>
+        <ul>
+            <div id="music">
+                <audio src="../static/music/光阴的故事.mp3" controls="controls" >
+                    Your browser does not support the audio element.
+                    </audio>
+                <li><a target="_blank" href="https://www.sdju.edu.cn/" style="margin-bottom:10px">电机官网</a></li>
+                <li><a target="_blank" href="https://tieba.baidu.com/f?kw=%C9%CF%BA%A3%B5%E7%BB%FA%D1%A7%D4%BA&fr=ala0&tpl=5" style="margin-bottom:10px">电机贴吧</a></li>
+                <li><a target="_blank" href="https://weibo.com/u/2997539640?topnav=1&wvr=6&topsug=1" style="margin-bottom:10px">电机微博</a></li>   
+        </ul>
+    </aside>
+</main>
+    <div id = "footer">
+        <h1> made by 小刘同学<h1>
+</body>
+</html>
+
+<style>
+    @media screen and (max-width: 960px){
+  /* 手机端CSS代码 */
+  body{
+    background-color:bisque; 
+  }
+  #header {
+        background-color:black;
+        color:white;
+        text-align:center;
+        padding:5px;
+    }
+    #footer {
+        background-color:black;
+        color:white;
+        clear:both;
+        text-align:center;
+    }
+    #tips{
+        background-color: salmon;
+        display: flex;
+        flex-direction:column-reverse;
+        width: 95%;
+        margin: auto;
+    }
+    #music{
+        top: 5px;
+        background-color: snow;
+    }
+
+}
+
+
+ 
+@media screen and (min-width: 960px){
+   /* 电脑端CSS代码 */
+   /* 做些修改*/
+   html, body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-size: 10px;
+    background-color: lightskyblue;
+  }
+  
+  body {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  /* || typography */
+  
+  h1, h2, h3 {
+    font-family: 'Sonsie One', cursive;
+    color: #2a2a2a;
+  }
+  
+  p, input, li {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #2a2a2a;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+  }
+  
+  h2 {
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 2.2rem;
+  }
+  h4{
+    font-size: 1.8rem;
+  }
+  p, li {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  
+  /* || header layout */
+  
+  nav, article, aside, footer {
+    background-color: white;
+    padding: 1%;
+  }
+  
+  nav {
+    height: 50px;
+    background-color: lightyellow;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    padding: 0;
+    list-style-type: none;
+    flex: 2;
+    display: flex;
+  }
+  
+  nav li {
+    display: inline;
+    text-align: center;
+    flex: 1;
+  }
+  
+  nav a {
+    display: inline-block;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+  }
+  
+  nav form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 2em;
+  }
+  
+  input {
+    font-size: 1.6rem;
+    height: 32px;
+  }
+  
+  input[type="search"] {
+    flex: 3;
+  }
+  
+  input[type="submit"] {
+    flex: 1;
+    margin-left: 1rem;
+    background: #333;
+    border: 0;
+    color: white;
+  }
+  
+  /* || main layout */
+  
+  main {
+    display: flex;
+  }
+  
+  article {
+    flex: 4;
+  }
+
+  aside {
+    flex: 1;
+    margin-left: 10px;
+    background-color: linen;
+  }
+  
+  aside li {
+    padding-bottom: 10px;
+  }
+  
+  footer {
+    margin-top: 10px;
+  }
+
+
+}
+    </style>
