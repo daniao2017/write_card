@@ -1,89 +1,236 @@
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>致毕业生的一份礼物</title>
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
 </head>
 <body>
-    <div id= "header"> 
-    <h1>致毕业生的一份礼物</h1>
-    </div>
-    <div id = "tips">
-    <p> 
-       tips: 
+    <header>
+        <h1>来自母校的明信片</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="upload">首页</a></li>
+            <li><a >图文展示</a></li>
+            <li><a href="note"> 小结笔记</a></li>
+            <li><a >备留开发</a></li> 
+        </ul>
+    </nav>
+<main>
+    <article>
+        <h2>首页</h2>
+        <h3>
+            希望是坚韧的拐杖，忍耐是旅行袋，带上他们，你可以登上永恒之旅，走遍全世界。
+        </h3>
 
-       这是一个demo，由小刘同学制作，部署在阿里云上，同学可以上传自己的图片和姓名，经过paddlehub抠图, 图像变换等操作后收到来自母校的
-        明信片。明信片分为前景(人像合成)，后景(祝福语)。
-    </p>
-    </div>
-    <div id="music">
-        <audio src="../static/music/再见.mp3" controls="controls">
-            Your browser does not support the audio element.
-            </audio>
-    </div>
-    <div id ="left">
-    <form action="" enctype='multipart/form-data' method='POST'>
-        <input type="file" name="file" style="margin-top:20px;background-color: teal;"/>
-        <br>
-        your name:<br>
-        <input type="text" name="name" value="小刘同学" style="margin-top:10px;">
-        <br>
-        <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
-    </form>
-    </div>
+        <div id ="left">
+            <form action="" enctype='multipart/form-data' method='POST'>
+              <h4>输入图片</h4>
+              <input type="file" name="file" style="margin-top:20px;margin-bottom:10px;background-color: teal;"/>
+              <h4> 你的名字和邮箱(任意邮箱)</h4>
+              <input type="text" name="name" value="小刘同学" style="margin-top:10px;margin-bottom:10px;">
+              <input type="text" name="email_name" value="xxx@qq.com" style="margin-top:10px;margin-bottom:10px;margin-left:10px">
+              <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
+            </form>
+            </div>
+            <h3>
+                本demo由小刘同学制作，部署在阿里云上，来自母校的明信片 网页链接： http://39.106.161.132/upload 
+            </h3>
+            
+        </div>
+        <p> 
+    </article>
+    <aside>
+        <h2>歌曲-光阴的故事</h2>
+        <ul>
+            <div id="music">
+                <audio src="../static/music/光阴的故事.mp3" controls="controls" >
+                    Your browser does not support the audio element.
+                    </audio>
+                <li><a target="_blank" href="https://www.sdju.edu.cn/" style="margin-bottom:10px">电机官网</a></li>
+                <li><a target="_blank" href="https://tieba.baidu.com/f?kw=%C9%CF%BA%A3%B5%E7%BB%FA%D1%A7%D4%BA&fr=ala0&tpl=5" style="margin-bottom:10px">电机贴吧</a></li>
+                <li><a target="_blank" href="https://weibo.com/u/2997539640?topnav=1&wvr=6&topsug=1" style="margin-bottom:10px">电机微博</a></li>   
+        </ul>
+    </aside>
+</main>
     <div id = "footer">
         <h1> made by 小刘同学<h1>
 </body>
 </html>
 
 <style>
-    #header {
+    @media screen and (max-width: 960px){
+  /* 手机端CSS代码 */
+  body{
+    background-color:bisque; 
+  }
+  #header {
         background-color:black;
         color:white;
         text-align:center;
         padding:5px;
     }
-    #left{
-        width: 20%;
-        height: 300px; 
-        background:yellow; 
-        float: left;    
-    }
-    #tips{
-        float: right;
-        width: 30%;
-        margin: auto;
-        color: white;
-        font-size: 16;
-        font-weight: bold;
-        line-height: 1.6;
-        box-sizing: border-box;
-        border:2px solid gray;
-        background-color: dimgray;
-        position: relative;
-        top:50px;
-    }
-    #right{
-    width: 200px;
-    height: 300px;
-    float: left;
-    background: yellow;
-    margin-left: -200px;
-}
     #footer {
         background-color:black;
         color:white;
         clear:both;
         text-align:center;
     }
-    body{
-        background-color: darkcyan;
+    #tips{
+        background-color: salmon;
+        display: flex;
+        flex-direction:column-reverse;
+        width: 95%;
+        margin: auto;
     }
     #music{
-        float: right;
-        position: relative;
-        left: 400px;
-
+        top: 5px;
+        background-color: snow;
     }
 
+}
+
+
+ 
+@media screen and (min-width: 960px){
+   /* 电脑端CSS代码 */
+   /* 做些修改*/
+   html, body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-size: 10px;
+    background-color: lightskyblue;
+  }
+  
+  body {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  /* || typography */
+  
+  h1, h2, h3 {
+    font-family: 'Sonsie One', cursive;
+    color: #2a2a2a;
+  }
+  
+  p, input, li {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #2a2a2a;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+  }
+  
+  h2 {
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 2.2rem;
+  }
+  h4{
+    font-size: 1.8rem;
+  }
+  p, li {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  
+  /* || header layout */
+  
+  nav, article, aside, footer {
+    background-color: white;
+    padding: 1%;
+  }
+  
+  nav {
+    height: 50px;
+    background-color: lightyellow;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    padding: 0;
+    list-style-type: none;
+    flex: 2;
+    display: flex;
+  }
+  
+  nav li {
+    display: inline;
+    text-align: center;
+    flex: 1;
+  }
+  
+  nav a {
+    display: inline-block;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+  }
+  
+  nav form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 2em;
+  }
+  
+  input {
+    font-size: 1.6rem;
+    height: 32px;
+  }
+  
+  input[type="search"] {
+    flex: 3;
+  }
+  
+  input[type="submit"] {
+    flex: 1;
+    margin-left: 1rem;
+    background: #333;
+    border: 0;
+    color: white;
+  }
+  
+  /* || main layout */
+  
+  main {
+    display: flex;
+  }
+  
+  article {
+    flex: 4;
+  }
+
+  aside {
+    flex: 1;
+    margin-left: 10px;
+    background-color: linen;
+  }
+  
+  aside li {
+    padding-bottom: 10px;
+  }
+  
+  footer {
+    margin-top: 10px;
+  }
+
+
+}
     </style>
