@@ -153,9 +153,9 @@ def add_text_huidu(username,basepath):
 
 def baidu_tts(tts_name):
     tts_name = str(tts_name)
-    APP_ID = "10778068"
-    API_KEY = "90ynbXXfuNGoNMGf5Fqx9nSI"
-    SECRET_KEY = "9f6bae32625ee9ad3ae33dd64b6f79b1"
+    APP_ID = "xxx"
+    API_KEY = "xxxx"
+    SECRET_KEY = "xxxxx"
     test = "相逢又告别，归帆又离岸，是往日欢乐的终结，未来幸福的开端。祝{0}同学前程似锦,平安喜乐".format(tts_name)
     client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
     base_path = os.path.dirname(__file__)  # 当前文件所在路径
