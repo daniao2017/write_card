@@ -35,7 +35,7 @@ def email_callback(name,email_name):
     mail_host="smtp.qq.com"  #设置服务器
     mail_user="2868108923@qq.com"    #用户名
     mail_pass="xxxx"   #口令 
-    sender = '2868108923@qq.com' 
+    sender = 'xxxx' 
     receivers = [email_name]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
     subject = '来自母校的明信片'
     message = MIMEMultipart()    
