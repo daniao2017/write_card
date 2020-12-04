@@ -10,6 +10,5 @@
  
  - 📒语音合成
 
-更多技术细节会以Wiki/博客写出来
 
 具体实现链接可以见[B站视频](https://www.bilibili.com/video/BV1gz4y197f7/)
